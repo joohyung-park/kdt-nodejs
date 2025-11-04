@@ -3,7 +3,7 @@
 
 ### 시작: 모든 코드가 한 파일에
 
-javascript
+
 
 ```javascript
 // app.js - 모든 코드가 여기 있음
@@ -57,7 +57,7 @@ console.log('Sum:', sum);
 
 **Step 1: 유틸리티 함수를 별도 파일로**
 
-javascript
+
 
 ```javascript
 // arrayUtils.js
@@ -90,7 +90,7 @@ function myReduce(array, callback, initialValue) {
 // 어떻게 내보낼까? 🤔
 ```
 
-javascript
+
 
 ```javascript
 // app.js
@@ -112,7 +112,7 @@ console.log('Sum:', sum);
 
 **시나리오:** 다른 파일에서도 같은 유틸리티가 필요하다면?
 
-javascript
+
 
 ```javascript
 // userService.js
@@ -128,7 +128,7 @@ const users = [
 // 복사/붙여넣기? ❌
 ```
 
-javascript
+
 
 ```javascript
 // productService.js
@@ -164,7 +164,7 @@ const products = [
 
 ### CommonJS로 모듈 만들기
 
-javascript
+
 
 ```javascript
 // arrayUtils.js
@@ -207,7 +207,7 @@ module.exports = {
 // };
 ```
 
-javascript
+
 
 ```javascript
 // app.js
@@ -225,7 +225,7 @@ const sum = arrayUtils.myReduce(numbers, (acc, n) => acc + n, 0);
 console.log('Sum:', sum);
 ```
 
-javascript
+
 
 ```javascript
 // userService.js
@@ -244,7 +244,7 @@ const adults = myFilter(users, user => user.age >= 30);
 console.log('Adults:', adults);
 ```
 
-javascript
+
 
 ```javascript
 // productService.js
@@ -267,7 +267,7 @@ console.log('Total:', total);
 
 **절대경로 시도:**
 
-javascript
+
 
 ```javascript
 // ❌ 이렇게 하면 안됨!
@@ -283,7 +283,7 @@ const arrayUtils = require('/Users/myname/project/arrayUtils');
 
 **상대경로 사용:**
 
-javascript
+
 
 ````javascript
 // ✅ 현재 파일 위치 기준
@@ -309,7 +309,7 @@ project/
 
 **상대경로 예시:**
 
-javascript
+
 
 ```javascript
 // services/userService.js
@@ -322,7 +322,7 @@ const userService = require('./services/userService'); // 하위 폴더
 
 ### 내 모듈 vs 외부 모듈
 
-javascript
+
 
 ```javascript
 // 내가 만든 모듈 - 상대경로 필요
@@ -351,7 +351,7 @@ const lodash = require('lodash');
 
 ### 우리가 만든 arrayUtils vs 남이 만든 lodash
 
-javascript
+
 
 ```javascript
 // 우리가 만든 유틸리티
@@ -423,7 +423,7 @@ json
 
 ### lodash 사용하기
 
-javascript
+
 
 ```javascript
 // app.js
@@ -453,7 +453,7 @@ console.log('Shuffled:', shuffled);
 
 **중요한 개념:**
 
-javascript
+
 
 ```javascript
 const lodash = require('lodash');
@@ -493,7 +493,7 @@ bash
 npm install date-fns
 ```
 
-javascript
+
 
 ```javascript
 // dateExample.js
@@ -583,7 +583,7 @@ json
 }
 ```
 
-javascript
+
 
 ```javascript
 // 실제 앱 코드에서 사용
@@ -798,7 +798,7 @@ json
 
 **CommonJS:**
 
-javascript
+
 
 ```javascript
 // arrayUtils.js
@@ -817,7 +817,7 @@ module.exports = {
 };
 ```
 
-javascript
+
 
 ```javascript
 // app.js
@@ -831,7 +831,7 @@ const result = myMap([1, 2, 3], n => n * 2);
 
 **ES Modules:**
 
-javascript
+
 
 ```javascript
 // arrayUtils.mjs (또는 .js with "type": "module")
@@ -845,7 +845,7 @@ export function myFilter(array, callback) {
 }
 ```
 
-javascript
+
 
 ```javascript
 // app.mjs
@@ -860,7 +860,7 @@ const result = myMap([1, 2, 3], n => n * 2);
 
 **require는 진짜 함수다:**
 
-javascript
+
 
 ```javascript
 // ✅ 변수 사용 가능
@@ -887,7 +887,7 @@ const lib = require(`./lib-v${version}`);
 
 **import는 문법이다 (함수 아님):**
 
-javascript
+
 
 ```javascript
 // ❌ 변수 사용 불가
@@ -912,7 +912,7 @@ import { myMap, myFilter } from './arrayUtils.mjs';
 
 **CommonJS: 동기적**이고 **동적** 로딩/실행.
 
-javascript
+
 
 ````javascript
 console.log('1. 시작');
@@ -934,7 +934,7 @@ console.log('3. 실행 완료');
 
 **ES Modules: **정적**이고 **비동기적으로 로딩 가능**하며, 실행은 **순차적**.**
 
-javascript
+
 
 ```javascript
 // 파일 최상단에서 모든 import를 먼저 분석
@@ -952,7 +952,7 @@ const result = myMap([1, 2, 3], n => n * 2);
 
 **Static (ES Modules):**
 
-javascript
+
 
 ```javascript
 // ✅ 빌드 타임에 분석 가능
@@ -961,7 +961,7 @@ import { myMap, myFilter } from './arrayUtils.mjs';
 // → myReduce는 안 쓰니까 번들에서 제외 (Tree Shaking!)
 ```
 
-javascript
+
 
 ```javascript
 // ✅ IDE가 자동완성 더 잘함
@@ -971,7 +971,7 @@ import { my } from './arrayUtils.mjs';
 
 **Dynamic (CommonJS):**
 
-javascript
+
 
 ```javascript
 // ❌ 실행해봐야 알 수 있음
@@ -985,7 +985,7 @@ const module = require(`./${moduleName}`);
 
 **ES Modules만 가능:**
 
-javascript
+
 
 ```javascript
 // data.mjs
@@ -995,7 +995,7 @@ const data = await response.json();
 export default data;
 ```
 
-javascript
+
 
 ```javascript
 // app.mjs
@@ -1005,7 +1005,7 @@ console.log(data); // 이미 로드됨!
 
 **CommonJS는 불가능:**
 
-javascript
+
 
 ```javascript
 // ❌ 에러!
@@ -1022,7 +1022,7 @@ const data = await fetchData(); // SyntaxError!
 
 **문제:** ES Modules는 조건부 로딩이 안 됨 **해결:** 동적 `import()` 함수
 
-javascript
+
 
 ```javascript
 // 조건부 로딩
@@ -1052,7 +1052,7 @@ button.addEventListener('click', async () => {
 
 **Named Export:**
 
-javascript
+
 
 ```javascript
 // arrayUtils.mjs
@@ -1061,7 +1061,7 @@ export function myFilter(array, callback) { /* ... */ }
 export const VERSION = '1.0.0';
 ```
 
-javascript
+
 
 ```javascript
 // 사용
@@ -1073,7 +1073,7 @@ import * as utils from './arrayUtils.mjs'; // 전체
 
 **Default Export:**
 
-javascript
+
 
 ```javascript
 // calculator.mjs
@@ -1085,7 +1085,7 @@ const calculator = {
 export default calculator;
 ```
 
-javascript
+
 
 ```javascript
 // 사용
@@ -1095,7 +1095,7 @@ import calc from './calculator.mjs'; // 이름 자유롭게
 
 **혼용:**
 
-javascript
+
 
 ```javascript
 // utils.mjs
@@ -1106,7 +1106,7 @@ const mainUtil = { /* ... */ };
 export default mainUtil;
 ```
 
-javascript
+
 
 ```javascript
 // 사용
@@ -1122,14 +1122,14 @@ import mainUtil, { helper1, helper2 } from './utils.mjs';
 
 **방법 1: .mjs 확장자 사용**
 
-javascript
+
 
 ```javascript
 // arrayUtils.mjs - 무조건 ES Module
 export function myMap() { /* ... */ }
 ```
 
-javascript
+
 
 ```javascript
 // app.mjs
@@ -1146,14 +1146,14 @@ json
 }
 ```
 
-javascript
+
 
 ```javascript
 // arrayUtils.js - 이제 ES Module로 동작!
 export function myMap() { /* ... */ }
 ```
 
-javascript
+
 
 ```javascript
 // app.js
@@ -1170,7 +1170,7 @@ json
 }
 ```
 
-javascript
+
 
 ```javascript
 // legacy.cjs - CommonJS 사용
@@ -1185,7 +1185,7 @@ module.exports = { /* ... */ };
 
 **예시 상황:** 사용자와 게시글
 
-javascript
+
 
 ```javascript
 // user.js
@@ -1200,7 +1200,7 @@ function getUser(id) {
 module.exports = { getUser };
 ```
 
-javascript
+
 
 ```javascript
 // post.js
@@ -1219,7 +1219,7 @@ function getPostsByUser(userId) {
 module.exports = { getPost, getPostsByUser };
 ```
 
-javascript
+
 
 ````javascript
 // app.js
@@ -1249,7 +1249,7 @@ console.log(user);
 
 **실습: 문제 재현**
 
-javascript
+
 
 ```javascript
 // user.js
@@ -1267,7 +1267,7 @@ module.exports = { getUser };
 console.log('user.js 완료');
 ```
 
-javascript
+
 
 ```javascript
 // post.js
@@ -1286,7 +1286,7 @@ console.log('post.js 완료');
 module.exports = { getPost };
 ```
 
-javascript
+
 
 ````javascript
 // app.js
@@ -1315,7 +1315,7 @@ getUser 호출
 
 **ES Modules는 더 안전:**
 
-javascript
+
 
 ```javascript
 // user.mjs
@@ -1333,7 +1333,7 @@ export function getUser(id) {
 console.log('user.mjs 완료');
 ```
 
-javascript
+
 
 ```javascript
 // post.mjs
@@ -1355,7 +1355,7 @@ export function getPostsByUser(userId) {
 console.log('post.mjs 완료');
 ```
 
-javascript
+
 
 ````javascript
 // app.mjs
@@ -1387,7 +1387,7 @@ getPost 호출
 
 **1. 의존성 방향 정리**
 
-javascript
+
 
 ```javascript
 // ❌ 순환 참조
@@ -1401,7 +1401,7 @@ javascript
 
 **실제 해결:**
 
-javascript
+
 
 ```javascript
 // user.js
@@ -1412,7 +1412,7 @@ function getUser(id) {
 module.exports = { getUser };
 ```
 
-javascript
+
 
 ```javascript
 // post.js
@@ -1427,7 +1427,7 @@ function getPostsByUser(userId) {
 module.exports = { getPost, getPostsByUser };
 ```
 
-javascript
+
 
 ```javascript
 // app.js - 여기서 조합
@@ -1441,7 +1441,7 @@ console.log(user);
 
 **2. 중간 모듈 분리**
 
-javascript
+
 
 ```javascript
 // models.js - 데이터 구조만
@@ -1461,7 +1461,7 @@ module.exports = {
 };
 ```
 
-javascript
+
 
 ```javascript
 // userService.js
@@ -1474,7 +1474,7 @@ function getUser(id) {
 module.exports = { getUser };
 ```
 
-javascript
+
 
 ```javascript
 // postService.js
@@ -1489,7 +1489,7 @@ module.exports = { getPost };
 
 **3. 지연 로딩 (CommonJS 한정)**
 
-javascript
+
 
 ```javascript
 // user.js
