@@ -115,7 +115,7 @@ console.log(queue); // 출력: [ '민수' ]
 **JS 인접 리스트 표현:**
 
 ```javascript
-const extendedTreeGraph = {
+const treeGraph = {
     'A': ['B', 'C'], 
     'B': ['D', 'E'], 
     'C': ['F'],
