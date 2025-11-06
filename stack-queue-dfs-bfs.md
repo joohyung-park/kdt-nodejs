@@ -148,7 +148,41 @@ DFS는 **Stack**의 원리(LIFO)와 일치합니다. 가장 최근에 확인한 
 1. 갈림길이 나오면, 일단 **한쪽 길을 선택**해 끝까지 가봅니다.
     
 2. **막다른 길**에 도달하면, 마지막 갈림길로 **되돌아와** (Pop/Backtrack) 다른 길을 선택합니다.
-    
+
+```
+깊이 우선 탐색 DFS stack(push/pop)
+0. push(root)
+['A'] <- 'A'
+1. pop()
+[] -> 'A'                    'A'
+2. push(A의 자식)
+['C', 'B'] <- 'C', 'B'
+3. pop()
+['C'] -> 'B'                 'B'
+4. push(B의 자식)
+['C', 'E', 'D'] <- 'E', 'D'
+5. pop()
+['C', 'E'], -> 'D'            D
+6. push(D의 자식)
+['C', 'E'] <- nothing
+7. pop()
+['C'], -> 'E'                 E
+8. push(E의 자식)
+['C', 'G'] <- G
+9. pop()
+['C'], -> 'G'                 G
+10. push(G의 자식)
+['C'] <- nothing
+11. pop()
+[], -> 'C'                    C
+12. push(C의 자식)
+['F'] <- F
+13.pop()
+[], -> 'F'                    F
+14 push(F의 자식)
+[]  <- nothing 
+==> 넣고 length 0이면 나감
+```
 
 #### 💻 JS 구현: Stack을 활용한 DFS (반복문)
 
@@ -209,7 +243,41 @@ BFS는 **Queue**의 원리(FIFO)와 일치합니다. 먼저 도착한 노드(가
 1. 돌이 떨어진 지점(시작점)에서 **가장 가까운 곳**부터 동그랗게 물결이 퍼집니다.
     
 2. 가까운 곳의 물결이 모두 퍼지고 난 후에야 **다음 단계**의 물결이 퍼져나갑니다.
-    
+
+```
+너비 우선 탐색 BFS    queue(unshift/pop)
+0. unshift (root)
+'A' -> ['A']
+1. pop()
+[] -> 'A'                    'A'
+2. unshift (A의 자식)
+'C', 'B' -> ['C','B']
+3. pop()
+['C'] -> 'B'                'B'
+4. unshift (B의 자식)
+'E', 'D' -> ['E', 'D', 'C']
+5. pop()
+['E', 'D'], -> 'C'           C
+6. unshift (C의 자식)
+F -> ['F', 'E', 'D']
+7. pop()
+['F', 'E'], -> 'D'           D
+8. unshift (D의 자식)
+nothing -> ['F', 'E']
+9. pop()
+['F'], -> 'E'                E
+10. unshift (E의 자식)
+G -> ['G', 'F']
+11.pop()
+['G'], -> 'F'                F
+12 unshift (F의 자식)
+nothing -> ['G']
+13 pop()
+[] -> 'G'                    G
+14 unshift (G의 자식)
+nothing -> [] 
+==> 넣고 length 0이면 나감
+```
 
 #### 💻 JS 구현: Queue를 활용한 BFS
 
