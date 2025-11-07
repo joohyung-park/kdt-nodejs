@@ -53,17 +53,14 @@ async function asyncFn() {
   console.log(step1Result + step2Result);
 }
 
-const scope = {};
-Promise.resolve(scope) // {}
-  .then((scope) => {
-    // {}
-    scope.step1Result = step1();
-    return scope; // { step1Result: "step1"}
-  }) // 앞에 거 끝나면 나 이거 해줘
-  .then((scope) => {
-    // { step1Result: "step1"}
-    scope.step2Result = step2();
-    return scope; // { step1Result: "step1", step2Result: "step2"}
-  })
-  .then(({ step1Result, step2Result }) => console.log(step1Result + step2Result));
 
+let scope = {};
+step1()
+  .then((s1) => {
+    scope.step1Result = s1;
+    return step2();
+  })
+  .then((s2) => {
+    scope.step2Result = s2;
+    console.log(scope.step1Result + scope.step2Result);
+  });
