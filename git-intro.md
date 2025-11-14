@@ -488,7 +488,8 @@ bash
 # 1. 새 파일 생성 (오타가 있는 커밋)
 echo "# 할 일 목록" > todo.txt
 git add todo.txt
-git commit -m "feat: 할일 목록 추가"  # '할일' → '할 일' 띄어쓰기 실수
+# '할일' → '할 일' 띄어쓰기 실수
+git commit -m "feat: 할일 목록 추가"  
 
 # 2. 로그 확인
 git log --oneline -1
