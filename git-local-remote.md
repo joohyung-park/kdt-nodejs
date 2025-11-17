@@ -14,7 +14,7 @@
 
 **단계별 진행:**
 
-1. GitHub 접속 ([https://github.com](https://github.com))
+1. GitHub 접속 ([git@github.com:](git@github.com:))
 2. 우측 상단 `+` 버튼 → `New repository` 클릭
 3. Repository 설정:
    - Repository name: `git-workshop`
@@ -56,15 +56,15 @@ bash
 
 ```bash
 # GitHub에서 제공하는 URL 복사 (HTTPS 또는 SSH)
-# 예: https://github.com/username/git-workshop.git
+# 예: git@github.com:username/git-workshop.git
 
 # Remote 추가
-git remote add origin https://github.com/username/git-workshop.git
+git remote add origin git@github.com:username/git-workshop.git
 
 # 연결 확인
 git remote -v
-# origin  https://github.com/username/git-workshop.git (fetch)
-# origin  https://github.com/username/git-workshop.git (push)
+# origin  git@github.com:username/git-workshop.git (fetch)
+# origin  git@github.com:username/git-workshop.git (push)
 ```
 
 **용어 설명:**
@@ -204,7 +204,7 @@ bash
 # 작업 디렉토리 준비
 mkdir ~/git-workshop-demo
 cd ~/git-workshop-demo
-git clone https://github.com/username/git-workshop.git
+git clone git@github.com:username/git-workshop.git
 cd git-workshop
 ```
 
@@ -252,7 +252,7 @@ bash
 
 # 같은 저장소의 다른 위치로 이동
 cd ~/git-workshop-demo
-git clone https://github.com/username/git-workshop.git workshop2
+git clone git@github.com:username/git-workshop.git workshop2
 cd workshop2
 
 # 또는 Terminal 1에서 push 후:
@@ -393,7 +393,7 @@ bash
 # Collaborator 추가: Settings → Collaborators → Add people
 
 # 각 학생이 Clone
-git clone https://github.com/instructor/git-team-workshop.git
+git clone git@github.com:instructor/git-team-workshop.git
 cd git-team-workshop
 ```
 
@@ -501,7 +501,7 @@ bash
 
 ```bash
 git push origin main
-# To https://github.com/instructor/git-team-workshop.git
+# To git@github.com:instructor/git-team-workshop.git
 #    e5f6a7b..f6a7b8c  main -> main
 ```
 
@@ -511,7 +511,7 @@ bash
 
 ```bash
 git push origin main
-# To https://github.com/instructor/git-team-workshop.git
+# To git@github.com:instructor/git-team-workshop.git
 #  ! [rejected]        main -> main (fetch first)
 # error: failed to push some refs
 # hint: Updates were rejected because the remote contains work
@@ -539,7 +539,7 @@ bash
 ```bash
 # 1. Pull로 A의 작업 받기
 git pull origin main
-# From https://github.com/instructor/git-team-workshop
+# From git@github.com:instructor/git-team-workshop
 #  * branch            main       -> FETCH_HEAD
 # Merge made by the 'recursive' strategy.
 #  farewell.py | 2 ++
