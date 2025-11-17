@@ -1,5 +1,3 @@
-
-
 ## 4부: Local vs Remote (3시간)
 
 ---
@@ -19,10 +17,10 @@
 1. GitHub 접속 ([https://github.com](https://github.com))
 2. 우측 상단 `+` 버튼 → `New repository` 클릭
 3. Repository 설정:
-    - Repository name: `git-workshop`
-    - Description: "Git 실습용 저장소"
-    - Public/Private 선택
-    - **중요: Initialize 옵션 모두 체크 해제** (README, .gitignore 등)
+   - Repository name: `git-workshop`
+   - Description: "Git 실습용 저장소"
+   - Public/Private 선택
+   - **중요: Initialize 옵션 모두 체크 해제** (README, .gitignore 등)
 4. `Create repository` 클릭
 
 **왜 Initialize 하지 않나요?**
@@ -107,10 +105,10 @@ git branch -vv
 
 **실습 체크리스트:**
 
-- [ ]  GitHub에 저장소 생성 완료
-- [ ]  `git remote -v`로 연결 확인
-- [ ]  `git push -u origin main` 성공
-- [ ]  GitHub 웹페이지에서 커밋 내역 확인
+- [ ] GitHub에 저장소 생성 완료
+- [ ] `git remote -v`로 연결 확인
+- [ ] `git push -u origin main` 성공
+- [ ] GitHub 웹페이지에서 커밋 내역 확인
 
 **트러블슈팅:**
 
@@ -136,6 +134,7 @@ git remote add origin <새로운-URL>
 ### 4.2 Local Branch vs Remote Branch - 강화 (70분)
 
 #### 학습 목표
+
 - `main`과 `origin/main`이 **완전히 다른 브랜치**임을 체득한다
 - `git fetch`와 `git pull`의 차이를 명확히 이해한다
 - 원격 브랜치 추적 개념을 이해한다
@@ -143,6 +142,7 @@ git remote add origin <새로운-URL>
 #### 개념 설명 (10분)
 
 **핵심 진실:**
+
 ```
 main과 origin/main은 별개의 브랜치입니다!
 
@@ -151,6 +151,7 @@ origin/main  → GitHub 서버의 브랜치를 추적하는 로컬 복사본
 ```
 
 **시각화:**
+
 ```
 [내 컴퓨터]                    [GitHub 서버]
 main ─┐                       origin (실제 저장소)
@@ -221,13 +222,19 @@ git add local-file.txt
 git commit -m "Add local file"
 
 # 현재 상태 확인
-git log --oneline --all --graph -5
+git lga
+
+git push
+
+git lga
+
 # * a3f2b1c (HEAD -> main) Add local file
 # * 7a3b2c1 (origin/main) Previous commit
 # * ...
 ```
 
 **중요 관찰:**
+
 ```
 HEAD -> main     : 로컬 브랜치가 여기
 origin/main      : 원격 추적 브랜치는 이전 커밋에 머물러 있음
@@ -252,14 +259,14 @@ cd workshop2
 # cd ~/git-workshop-demo/git-workshop
 
 # Fetch 전 상태
-git log --oneline --all --graph -5
+git lga
 # * 7a3b2c1 (HEAD -> main, origin/main) Previous commit
 
 # Fetch 실행
 git fetch origin
 
 # Fetch 후 상태
-git log --oneline --all --graph -5
+git lga
 # * a3f2b1c (origin/main) Add local file
 # * 7a3b2c1 (HEAD -> main) Previous commit
 ```
@@ -300,7 +307,7 @@ ls -la
 # local-file.txt가 나타남!
 
 # 최종 상태
-git log --oneline --all --graph -5
+git lga
 # * a3f2b1c (HEAD -> main, origin/main) Add local file
 # * 7a3b2c1 Previous commit
 ```
@@ -309,11 +316,11 @@ git log --oneline --all --graph -5
 
 **명령어 비교 표:**
 
-|명령어|동작|origin/main|main|작업 디렉토리|
-|---|---|---|---|---|
-|`git fetch`|다운로드만|✅ 업데이트|❌ 그대로|❌ 변화 없음|
-|`git merge origin/main`|병합만|❌ 그대로|✅ 업데이트|✅ 파일 반영|
-|`git pull`|fetch + merge|✅ 업데이트|✅ 업데이트|✅ 파일 반영|
+| 명령어                  | 동작          | origin/main | main        | 작업 디렉토리 |
+| ----------------------- | ------------- | ----------- | ----------- | ------------- |
+| `git fetch`             | 다운로드만    | ✅ 업데이트 | ❌ 그대로   | ❌ 변화 없음  |
+| `git merge origin/main` | 병합만        | ❌ 그대로   | ✅ 업데이트 | ✅ 파일 반영  |
+| `git pull`              | fetch + merge | ✅ 업데이트 | ✅ 업데이트 | ✅ 파일 반영  |
 
 **실제 증명:**
 
@@ -358,11 +365,11 @@ git pull origin main
 
 **실습 체크리스트:**
 
-- [ ]  `git branch -r`로 원격 브랜치 확인
-- [ ]  `git log --all --graph`로 main과 origin/main 분리 확인
-- [ ]  `git fetch` 후 origin/main만 업데이트됨 확인
-- [ ]  `git merge origin/main`으로 동기화 완료
-- [ ]  fetch와 pull의 차이 이해
+- [ ] `git branch -r`로 원격 브랜치 확인
+- [ ] `git log --all --graph`로 main과 origin/main 분리 확인
+- [ ] `git fetch` 후 origin/main만 업데이트됨 확인
+- [ ] `git merge origin/main`으로 동기화 완료
+- [ ] fetch와 pull의 차이 이해
 
 ---
 
@@ -512,6 +519,7 @@ git push origin main
 ```
 
 **거절 이유 이해:**
+
 ```
 GitHub의 상태:
   ... → e5f6a7b → f6a7b8c (A가 push한 커밋)
@@ -589,10 +597,10 @@ git push origin main
 
 **실습 체크리스트:**
 
-- [ ]  2인 1조로 순차적 작업 완료
-- [ ]  동시 작업 후 Pull 필요성 경험
-- [ ]  Merge 커밋 자동 생성 확인
-- [ ]  `git log --graph`로 협업 히스토리 시각화
+- [ ] 2인 1조로 순차적 작업 완료
+- [ ] 동시 작업 후 Pull 필요성 경험
+- [ ] Merge 커밋 자동 생성 확인
+- [ ] `git log --graph`로 협업 히스토리 시각화
 
 ---
 
@@ -783,6 +791,7 @@ git push origin --delete my-branch
 ```
 
 **실습 체크리스트:**
+
 - [ ] 실험 브랜치 생성 및 작업 완료
 - [ ] `git branch -a`로 로컬 전용 확인
 - [ ] 브랜치 삭제 후 원격에 영향 없음 확인
@@ -797,6 +806,7 @@ git push origin --delete my-branch
 ### 5.1 Stash - 임시 저장소 (30분)
 
 #### 학습 목표
+
 - 작업 중단 시 변경사항을 임시 저장할 수 있다
 - Stash를 활용한 컨텍스트 스위칭 기법을 익힌다
 - 급한 버그 수정 시나리오를 처리할 수 있다
@@ -804,6 +814,7 @@ git push origin --delete my-branch
 #### 개념 설명 (5분)
 
 **Stash란?**
+
 ```
 "급한 불 끄러 가야 하는데, 지금 작업은 커밋하기 애매할 때"
 
@@ -1043,11 +1054,11 @@ git stash pop
 
 **실습 체크리스트:**
 
-- [ ]  `git stash`로 작업 임시 저장
-- [ ]  `git stash list`로 목록 확인
-- [ ]  브랜치 이동 후 긴급 작업 완료
-- [ ]  `git stash pop`으로 작업 복구
-- [ ]  여러 Stash 관리 실습
+- [ ] `git stash`로 작업 임시 저장
+- [ ] `git stash list`로 목록 확인
+- [ ] 브랜치 이동 후 긴급 작업 완료
+- [ ] `git stash pop`으로 작업 복구
+- [ ] 여러 Stash 관리 실습
 
 ---
 
@@ -1082,6 +1093,7 @@ git branch
 #### 개념 설명: Reset의 3단계 (5분)
 
 **Git의 3가지 영역:**
+
 ```
 [Working Directory] ← 파일 실제 수정
          ↓
@@ -1092,11 +1104,11 @@ git branch
 
 **Reset 모드별 영향:**
 
-|모드|Repository|Staging Area|Working Directory|
-|---|---|---|---|
-|`--soft`|← 여기로 이동|유지|유지|
-|`--mixed` (기본)|← 여기로 이동|초기화|유지|
-|`--hard`|← 여기로 이동|초기화|**삭제** ⚠️|
+| 모드             | Repository    | Staging Area | Working Directory |
+| ---------------- | ------------- | ------------ | ----------------- |
+| `--soft`         | ← 여기로 이동 | 유지         | 유지              |
+| `--mixed` (기본) | ← 여기로 이동 | 초기화       | 유지              |
+| `--hard`         | ← 여기로 이동 | 초기화       | **삭제** ⚠️       |
 
 #### 실습 8: Reset 3단계 실습 (25분)
 
@@ -1368,11 +1380,11 @@ git reset --hard   # 정말 확실할 때만
 
 **실습 체크리스트:**
 
-- [ ]  `git branch backup` 습관화
-- [ ]  `--soft`: Staging 유지 확인
-- [ ]  `--mixed`: Staging 초기화 확인
-- [ ]  `--hard`: Working Directory 삭제 확인
-- [ ]  백업 브랜치로 복구 성공
+- [ ] `git branch backup` 습관화
+- [ ] `--soft`: Staging 유지 확인
+- [ ] `--mixed`: Staging 초기화 확인
+- [ ] `--hard`: Working Directory 삭제 확인
+- [ ] 백업 브랜치로 복구 성공
 
 ---
 
@@ -1399,6 +1411,7 @@ git checkout <commit-hash>
 ```
 
 **Detached HEAD란?**
+
 ```
 일반 상태:
 HEAD → main → c3 (latest commit)
@@ -1647,6 +1660,7 @@ git checkout HEAD -- file.txt
 ```
 
 **실습 체크리스트:**
+
 - [ ] `git checkout <hash>`로 과거 이동
 - [ ] Detached HEAD 상태 확인
 - [ ] `git log --all --graph`로 전체 히스토리 확인
@@ -1658,6 +1672,7 @@ git checkout HEAD -- file.txt
 ### 5.4 Reflog - 잃어버린 커밋 복구 (30분)
 
 #### 학습 목표
+
 - Reflog를 통해 Git의 안전망을 이해한다
 - `git reset --hard`로 잃어버린 커밋을 복구할 수 있다
 - Git은 30일간 모든 기록을 보관함을 확신한다
@@ -1665,6 +1680,7 @@ git checkout HEAD -- file.txt
 #### 개념 설명 (5분)
 
 **Reflog란?**
+
 ```
 "Git의 블랙박스"
 
@@ -1982,6 +1998,7 @@ git reset --hard HEAD
 ```
 
 **핵심 메시지:**
+
 ```
 "Git은 안전하다!"
 
@@ -1995,11 +2012,11 @@ git branch backup  ← 이 습관만 들이면
 
 **실습 체크리스트:**
 
-- [ ]  `git reflog`로 HEAD 이동 기록 확인
-- [ ]  `git reset --hard`로 커밋 잃어버리기
-- [ ]  Reflog에서 잃어버린 커밋 찾기
-- [ ]  `git reset --hard <hash>`로 복구
-- [ ]  브랜치 삭제 후 Reflog로 복구
+- [ ] `git reflog`로 HEAD 이동 기록 확인
+- [ ] `git reset --hard`로 커밋 잃어버리기
+- [ ] Reflog에서 잃어버린 커밋 찾기
+- [ ] `git reset --hard <hash>`로 복구
+- [ ] 브랜치 삭제 후 Reflog로 복구
 
 ---
 
