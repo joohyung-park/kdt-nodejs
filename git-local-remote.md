@@ -224,9 +224,6 @@ git commit -m "Add local file"
 # 현재 상태 확인
 git lga
 
-git push
-
-git lga
 
 # * a3f2b1c (HEAD -> main) Add local file
 # * 7a3b2c1 (origin/main) Previous commit
@@ -290,7 +287,20 @@ ls -la
 
 bash
 
+Terminal 1
+
 ```bash
+
+git push
+
+git lga
+```
+
+Terminal 2
+
+```bash
+git fetch origin
+
 # 현재 브랜치 확인
 git branch
 # * main
