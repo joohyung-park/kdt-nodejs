@@ -1222,9 +1222,9 @@ app.post(
 
 ## 5. 파일 다운로드 (2시간)
 
-> **💡 핵심 개념정리: Buffering vs Streaming**
+> **💡 핵심 개념정리: Batching vs Streaming**
 >
-> - **Buffering**: 파일을 컵에 다 채운 뒤 주는 것. (메모리 부족 위험)
+> - **Batching**: 파일을 컵에 다 채운 뒤 주는 것. (메모리 부족 위험)
 > - **Streaming**: 호스로 물을 계속 흘려보내는 것. (대용량 처리에 필수)
 
 ### 5.1 sendFile vs download (0.5시간)
