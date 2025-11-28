@@ -1614,28 +1614,34 @@ npx prisma studio
 
 ```javascript
 // prisma/seed.js
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+// prisma/seed.js
+import { prisma } from "./prisma.js";
 
 async function main() {
   // 기존 데이터 삭제 (초기화)
-  await prisma.user.deleteMany();
+  console.log("Delete previous data");
+  await prisma.article.deleteMany();
 
   // 더미 데이터 생성
-  const alice = await prisma.user.create({
-    data: {
-      name: "Alice",
-      email: "alice@prisma.io",
-      posts: {
-        create: [
-          { title: "Prisma와 함께하는 개발", content: "정말 편해요" },
-          { title: "SQL 이제 안녕", content: "ORM 최고" },
-        ],
+  console.log("Seed dummies");
+  const payload = await prisma.article.createMany({
+    data: [
+      {
+        title: "title1",
+        content: "content1",
       },
-    },
+      {
+        title: "title2",
+        content: "content2",
+      },
+      {
+        title: "title3",
+        content: "content3",
+      },
+    ],
   });
 
-  console.log({ alice });
+  console.log(payload.count, " dummies seeded");
 }
 
 main()
@@ -1651,13 +1657,21 @@ main()
 
 **설정 및 실행**
 
-```json
-// package.json
-{
-  "prisma": {
-    "seed": "node prisma/seed.js"
-  }
-}
+```ts
+// prisma.config.ts
+import "dotenv/config";
+import { defineConfig, env } from "prisma/config";
+
+export default defineConfig({
+  schema: "prisma/schema.prisma",
+  migrations: {
+    path: "prisma/migrations",
+    seed: "node prisma/seed.js",
+  },
+  datasource: {
+    url: env("DATABASE_URL"),
+  },
+});
 ```
 
 ```bash
