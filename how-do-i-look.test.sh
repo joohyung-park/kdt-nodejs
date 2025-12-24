@@ -95,7 +95,7 @@ RESPONSE=$(api_call POST "/styles" "{
     \"top\": { \"name\": \"셔츠\", \"brand\": \"Uniqlo\", \"price\": 30000 },
     \"bottom\": { \"name\": \"청바지\", \"brand\": \"Levis\", \"price\": 80000 }
   },
-  \"tags\": [\"캐주얼\", \"테스트\"],
+  \"tags\": [\"casual\", \"테스트\"],
   \"imageUrls\": [\"https://example.com/a.jpg\"]
 }")
 HTTP_STATUS=$(echo "$RESPONSE" | tail -1)
@@ -132,7 +132,7 @@ check_status "200"
 # 5. 스타일 목록 조회 (태그)
 ############################
 log "5. List Styles - Filter by tag"
-RESPONSE=$(api_call GET "/styles?page=1&pageSize=10&tag=캐주얼")
+RESPONSE=$(api_call GET "/styles?page=1&pageSize=10&tag=casual")
 HTTP_STATUS=$(echo "$RESPONSE" | tail -1)
 check_status "200"
 
