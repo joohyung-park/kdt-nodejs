@@ -149,76 +149,13 @@ DFS는 **Stack**의 원리(LIFO)와 일치합니다. 가장 최근에 확인한 
     
 2. **막다른 길**에 도달하면, 마지막 갈림길로 **되돌아와** (Pop/Backtrack) 다른 길을 선택합니다.
 
-```
-깊이 우선 탐색 DFS stack(push/pop)
-0. push(root)
-['A'] <- 'A'
-1. pop()
-[] -> 'A'                    'A'
-2. push(A의 자식)
-['C', 'B'] <- 'C', 'B'
-3. pop()
-['C'] -> 'B'                 'B'
-4. push(B의 자식)
-['C', 'E', 'D'] <- 'E', 'D'
-5. pop()
-['C', 'E'], -> 'D'            D
-6. push(D의 자식)
-['C', 'E'] <- nothing
-7. pop()
-['C'], -> 'E'                 E
-8. push(E의 자식)
-['C', 'G'] <- G
-9. pop()
-['C'], -> 'G'                 G
-10. push(G의 자식)
-['C'] <- nothing
-11. pop()
-[], -> 'C'                    C
-12. push(C의 자식)
-['F'] <- F
-13.pop()
-[], -> 'F'                    F
-14 push(F의 자식)
-[]  <- nothing 
-==> 넣고 length 0이면 나감
-```
+
 
 #### 💻 JS 구현: Stack을 활용한 DFS (반복문)
 
 **Stack**을 이용해 방문할 노드의 순서를 관리하며 깊이를 우선하여 탐색합니다.
 
-```javascript
-function dfs(graph, startNode) {
-    const stack = [startNode];
-    const visited = new Set();
-    visited.add(startNode); // 시작 노드는 바로 방문 처리
 
-    console.log("DFS 시작 노드:", startNode);
-
-    while (stack.length > 0) {
-        const node = stack.pop(); 
-        
-        console.log("DFS 방문:", node); 
-
-        // 현재 노드에서 갈 수 있는 이웃 노드들을 탐색
-        // 순서를 반대로 Push해야 Stack 특성상 원하는 순서로 탐색될 수 있음
-        const neighbors = graph[node].slice().reverse(); 
-        
-        for (const neighbor of neighbors) {
-            if (!visited.has(neighbor)) {
-                visited.add(neighbor); // 방문 예정 노드도 미리 방문 처리
-                stack.push(neighbor);
-            }
-        }
-    }
-}
-
-// 예시 실행 순서 (A -> B -> D -> C 또는 A -> C -> B -> D)
-// DFS는 깊이 우선이므로, 'A'에서 시작해 'B'로, 'B'에서 'D'로 깊게 내려간 후,
-// 되돌아와 'C'를 탐색하는 순서가 될 가능성이 높습니다.
-dfs(treeGraph, 'A');
-```
 
 **예시 순서:** `A`가 Stack에서 Pop되면, 이웃인 `B`, `C`가 Stack에 순서대로 Push됩니다. Stack의 LIFO 특성 때문에 `C`가 먼저 Pop되어 탐색이 **깊게** 이루어집니다.
 
@@ -244,72 +181,91 @@ BFS는 **Queue**의 원리(FIFO)와 일치합니다. 먼저 도착한 노드(가
     
 2. 가까운 곳의 물결이 모두 퍼지고 난 후에야 **다음 단계**의 물결이 퍼져나갑니다.
 
-```
-너비 우선 탐색 BFS    queue(unshift/pop)
-0. unshift (root)
-'A' -> ['A']
-1. pop()
-[] -> 'A'                    'A'
-2. unshift (A의 자식)
-'C', 'B' -> ['C','B']
-3. pop()
-['C'] -> 'B'                'B'
-4. unshift (B의 자식)
-'E', 'D' -> ['E', 'D', 'C']
-5. pop()
-['E', 'D'], -> 'C'           C
-6. unshift (C의 자식)
-F -> ['F', 'E', 'D']
-7. pop()
-['F', 'E'], -> 'D'           D
-8. unshift (D의 자식)
-nothing -> ['F', 'E']
-9. pop()
-['F'], -> 'E'                E
-10. unshift (E의 자식)
-G -> ['G', 'F']
-11.pop()
-['G'], -> 'F'                F
-12 unshift (F의 자식)
-nothing -> ['G']
-13 pop()
-[] -> 'G'                    G
-14 unshift (G의 자식)
-nothing -> [] 
-==> 넣고 length 0이면 나감
-```
+
 
 #### 💻 JS 구현: Queue를 활용한 BFS
 
 **Queue**를 이용해 방문할 노드의 순서를 관리하며 너비를 우선하여 탐색합니다.
 
 ```javascript
-function bfs(graph, startNode) {
-    const queue = [startNode];
-    const visited = new Set();
-    visited.add(startNode); // 시작 노드는 바로 방문 처리
+const treeGraph = {
+  A: ["B", "C"],
+  B: ["D", "E"],
+  C: ["F"],
+  D: [],
+  E: ["G"],
+  F: [],
+  G: [],
+};
 
-    console.log("BFS 시작 노드:", startNode);
+// 깊이 우선 탐색 DFS stack(push/pop)
+// 0. push(root)
+// ['A'] <- 'A'
+// 1. pop()
+// [] -> 'A'                    'A'
+// 2. push(A의 자식)
+// ['C', 'B'] <- 'C', 'B'
+// 3. pop()
+// ['C'] -> 'B'                 'B'
+// 4. push(B의 자식)
+// ['C', 'E', 'D'] <- 'E', 'D'
+// 5. pop()
+// ['C', 'E'], -> 'D'            D
+// 6. push(D의 자식)
+// ['C', 'E'] <- nothing
+// 7. pop()
+// ['C'], -> 'E'                 E
+// 8. push(E의 자식)
+// ['C', 'G'] <- G
+// 9. pop()
+// ['C'], -> 'G'                 G
+// 10. push(G의 자식)
+// ['C'] <- nothing
+// 11. pop()
+// [], -> 'C'                    C
+// 12. push(C의 자식)
+// ['F'] <- F
+// 13.pop()
+// [], -> 'F'                    F
+// 14 push(F의 자식)
+// []  <- nothing
+// ==> 넣고 length 0이면 나감
 
-    while (queue.length > 0) {
-        const node = queue.shift(); 
-        
-        console.log("BFS 방문:", node); 
-
-        // 현재 노드에서 갈 수 있는 이웃 노드들을 순서대로 Queue에 추가
-        for (const neighbor of graph[node]) {
-            if (!visited.has(neighbor)) {
-                visited.add(neighbor);
-                queue.push(neighbor);
-            }
-        }
-    }
+function dfs(tree) {
+  const stack = [getRoot(tree)];
+  while (stack.length > 0) {
+    const visit = stack.pop();
+    console.log(visit);
+    const children = tree[visit];
+    stack.push(...children);
+  }
 }
 
-// 예시 실행 순서 (A -> B, C (레벨 1) -> D (레벨 2))
-// BFS는 너비 우선이므로, 'A'와 가까운 노드들(B, C)을 먼저 탐색하고,
-// 그 다음 가까운 노드(D)를 탐색합니다.
-bfs(treeGraph, 'A');
+function bfs(tree) {
+  const queue = [getRoot(tree)];
+  while (queue.length > 0) {
+    const visit = queue.pop();
+    console.log(visit);
+    const children = tree[visit];
+    queue.unshift(...children);
+  }
+}
+
+function getRoot(tree) {
+  const childrenFilter = new Set();
+  for (const node in tree) {
+    const children = tree[node];
+    childrenFilter.add(children);
+  }
+  for (const node in tree) {
+    if (!childrenFilter.has(node)) {
+      return node;
+    }
+  }
+}
+
+dfs(treeGraph);
+bfs(treeGraph);
 ```
 
 **예시 순서:** `A`가 Queue에서 Dequeue되면, 이웃인 `B`, `C`가 Queue의 뒤쪽에 Enqueue됩니다. Queue의 FIFO 특성 때문에 `B`가 먼저 Dequeue되고, `C`가 Dequeue된 후에야 `D`가 탐색됩니다. (**너비 우선**)
