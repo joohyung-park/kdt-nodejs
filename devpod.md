@@ -16,6 +16,7 @@ Set-Service -Name ssh-agent -StartupType Automatic
 Start-Service ssh-agent
 Get-Service ssh-agent
 ```
+        6. Host, Container모두 ssh-add -l 에서 key가 보여야 한다. 없으면 등록
 
 		6. winget install git.git
 - Git SSH Key 등록
