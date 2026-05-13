@@ -10,7 +10,14 @@
 		4. 윈도우 검색창에서 서비스 -> OpenSSH Server 자동
     <img width="1179" height="1415" alt="스크린샷 2025-12-12 233352" src="https://github.com/user-attachments/assets/d05fadc4-3a79-4544-972f-3d926295640d" />
 
-		5. winget install git.git
+	    5. 서비스 시작 유형을 '자동'으로 변경 (재부팅 후에도 유지되도록)
+```powershell
+Set-Service -Name ssh-agent -StartupType Automatic
+Start-Service ssh-agent
+Get-Service ssh-agent
+```
+
+		6. winget install git.git
 - Git SSH Key 등록
 	- cat ~/.ssh/id*.pub 있는지 확인
 		- 없으면 ssh-keygen 으로 password없이 생성
