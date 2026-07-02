@@ -6,19 +6,17 @@
 		2. Docker Desktop 설치
 		3. 윈도우 검색창에서 선택적 기능 -> OpenSSH Server 설치
     <img width="2567" height="2005" alt="스크린샷 2025-12-12 231102" src="https://github.com/user-attachments/assets/a0711272-3975-4520-b199-5336d5e1d6fe" />
-
 		4. 윈도우 검색창에서 서비스 -> OpenSSH Server 자동
     <img width="1179" height="1415" alt="스크린샷 2025-12-12 233352" src="https://github.com/user-attachments/assets/d05fadc4-3a79-4544-972f-3d926295640d" />
-
 	    5. 서비스 시작 유형을 '자동'으로 변경 (재부팅 후에도 유지되도록)
-```powershell
-Set-Service -Name ssh-agent -StartupType Automatic
-Start-Service ssh-agent
-Get-Service ssh-agent
-```
-        6. Host, Container모두 ssh-add -l 에서 key가 보여야 한다. 없으면 등록
-
+		```powershell
+		Set-Service -Name ssh-agent -StartupType Automatic
+		Start-Service ssh-agent
+		Get-Service ssh-agent
+		```
 		6. winget install git.git
+
+	-  Host, Container모두 ssh-add -l 에서 key가 보여야 한다. 없으면 등록
 - Git SSH Key 등록
 	- cat ~/.ssh/id*.pub 있는지 확인
 		- 없으면 ssh-keygen 으로 password없이 생성
